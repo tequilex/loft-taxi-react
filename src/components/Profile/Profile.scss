@@ -1,0 +1,46 @@
+.profile {
+  background: rgb(166, 81, 167);
+  width: 888px;
+  height: 588px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px;
+}
+
+.profile__title {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 42px;
+  margin-bottom: 13px;
+}
+
+.subtitle {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21px;
+  color: #7B7B7B;
+  margin-bottom: 40px;
+}
+
+.profile__content {
+  display: flex;
+  margin-bottom: 30px;
+}
+
+.left-side {
+  width: 347px;
+  height: 300px;
+  background: rgb(152, 180, 111);
+  margin-right: 10px;
+  flex: 1;
+}
+
+.right-side {
+  width: 347px;
+  height: 200px;
+  background: slategray;
+  flex: 1;
+}

@@ -1,9 +1,20 @@
-import logo from './logo.svg'
-import './Header.css'
+import logo from '../../assets/img/logo.svg'
+import './Header.scss'
+import PropTypes from 'prop-types'
 
-function Header({onNavigate}) {
+function Header(events) {
+  const {clickNavItem} = events
 
-  const navigateTo = (page) => () => onNavigate(page)
+  Header.propTypes = {
+    clickNavItem: PropTypes.func.isRequired
+  }
+
+  const navList = [
+    {name: 'map', value: 'Карта'},
+    {name: 'profile', value: 'Профиль'},
+    {name: 'out', value: 'Выйти'}
+  ]
+
 
   return (
     <div className="header">
@@ -12,21 +23,13 @@ function Header({onNavigate}) {
       </div>
       <div className="navigation">
         <ul className="nav-list">
-          <li className="nav-item">
-            <button className="nav-button" onClick={navigateTo('main')}>
-              <span className="nav-item-text">Карта</span>
-            </button>
-          </li>
-          <li className="nav-item">
-            <button className="nav-button" onClick={navigateTo('profile')}>
-              <span className="nav-item-text">Профиль</span>
-            </button>
-          </li>
-          <li className="nav-item">
-            <button className="nav-button" onClick={navigateTo('login')}>
-              <span className="nav-item-text">Выйти</span>
-            </button>
-          </li>
+          {navList.map((el, i) => (
+            <li
+            key={i}
+            className="nav-item"
+            onClick={() => clickNavItem(el)}
+            >{el.value}</li>
+          ))}
         </ul>
       </div>
     </div>
