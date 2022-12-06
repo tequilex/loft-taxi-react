@@ -25,6 +25,6 @@ export const saveCard = (cardNumber, cardName, expiryDate, cvc) => ({
     cardName,
     expiryDate,
     cvc,
-    token: "recwZWv2GzEqyfUtg"
+    token: "AUTH_TOKEN"
   }
 })

@@ -1,8 +1,5 @@
 import logo from '../../assets/img/logo.svg'
-import Map from '../Map/Map'
-import Profile from '../Profile/Profile'
-import { PrivateRoute } from '../../PrivateRoute'
-import {Link, Switch, Route} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import './Header.scss'
 import PropTypes from 'prop-types'
 

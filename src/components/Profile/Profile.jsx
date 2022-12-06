@@ -1,28 +1,30 @@
-import React, {useState, useEffect} from "react"
+import React, {useState} from "react"
 import Input from '@mui/material/Input'
 import cardEllipse from '../../assets/img/cardEllipse.svg'
 import cardLogo from '../../assets/img/cardLogo.svg'
 import cardSquare from '../../assets/img/cardSquare.svg'
 import Button from "../UI/Button/Button"
 import { connect } from "react-redux"
-import {saveCard} from '../../action'
+import { saveCard } from '../../store/action'
 
 import './Profile.scss'
 
-function Profile() {
+function Profile({saveCard}) {
+
+
   const [cardNumber, setCardNumber] = useState("000000000000000")
   const [expiryDate, setExpiryDate] = useState("00/00")
   const [cardName, setCardName] = useState("")
   const [cvc, setCvc] = useState("")
 
 
-  function handleSubmit(e) {
+    const handleSubmit = (e) => {
     e.preventDefault()
       const cardNumber = e.target.cardNumber ? e.target.cardNumber.value : null
       const cardName = e.target.cardName ? e.target.cardName.value : null
       const expiryDate = e.target.expiryDate ? e.target.expiryDate.value : null
       const cvc = e.target.cvc ? e.target.cvc.value : null
-
+    
       saveCard(cardNumber, cardName, expiryDate, cvc)
   }
 
@@ -94,7 +96,6 @@ export default connect(state => ({
   cardNumber: state.CardData.cardNumber,
   expiryDate: state.CardData.expiryDate,
   cardName: state.CardData.cardName,
-  cvc: state.CardData.cvc,
+  cvc: state.CardData.cvc
 }),
-{saveCard}
-)(Profile)
+{saveCard})(Profile)

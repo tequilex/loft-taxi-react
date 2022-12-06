@@ -3,10 +3,10 @@ import Header from "../../components/Header/Header";
 import Map from "../../components/Map/Map";
 import Profile from "../../components/Profile/Profile";
 // import {WithAuth} from '../../contexts'
-import { PrivateRoute } from '../../PrivateRoute'
+import { PrivateRoute } from '../../components/PrivateRoute/PrivateRoute'
 import { Switch, Route} from 'react-router-dom'
 import { connect } from "react-redux"
-import { logOut } from "../../action"
+import { logOut } from "../../store/action"
 import PropTypes from 'prop-types'
 import './Authorized.scss'
 

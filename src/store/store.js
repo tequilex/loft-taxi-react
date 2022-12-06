@@ -1,9 +1,9 @@
 import { createStore, applyMiddleware } from 'redux'
-import rootReducer from './reducers'
-import { authMiddleware } from './authMiddleware'
-import {saveCardMiddleware} from './saveCardMiddleware'
+import rootReducer from './reducers/index'
+import { authMiddleware } from '../middlewares/authMiddleware'
+import {saveCardMiddleware} from '../middlewares/saveCardMiddleware'
 
-function saveToLosalStorage(state) {
+function saveToLoсalStorage(state) {
   try {
     const serialisedState = JSON.stringify(state)
     console.log(serialisedState)
@@ -24,4 +24,4 @@ function loadFromLocalStorage() {
 
 export const store = createStore(rootReducer, loadFromLocalStorage(), applyMiddleware(authMiddleware, saveCardMiddleware))
 
-store.subscribe(() => saveToLosalStorage(store.getState()))
+store.subscribe(() => saveToLoсalStorage(store.getState()))

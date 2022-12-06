@@ -1,6 +1,6 @@
-import { showCardData } from "./action";
-import { serverSaveCard } from "./api";
-import { SAVE_CARD } from "./action";
+import { showCardData } from "../store/action";
+import { serverSaveCard } from "../api";
+import { SAVE_CARD } from "../store/action";
 
 export const saveCardMiddleware = (store) => (next) => async (action) => {
   if (action.type === SAVE_CARD) {
@@ -25,8 +25,7 @@ export const saveCardMiddleware = (store) => (next) => async (action) => {
         cardNumber,
         cardName,
         expiryDate,
-        cvc,
-        token
+        cvc
       }))
     }
   } else {

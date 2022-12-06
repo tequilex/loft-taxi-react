@@ -1,4 +1,4 @@
-import {SHOW_CARD_DATA} from '../action'
+import {SHOW_CARD_DATA} from '../../store/action'
 
 const initialState = {
   cardNumber: undefined,

@@ -23,5 +23,5 @@ export const serverSaveCard = async (cardNumber, cardName, expiryDate, cvc, toke
     }
   )
   .then(res => res.json())
-  .then(answer => answer.success())
+  .then(answer => answer.success)
 }
