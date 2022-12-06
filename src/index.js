@@ -5,15 +5,22 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {ThemeProvider} from '@mui/material/styles'
 import {theme} from 'loft-taxi-mui-theme'
-import { AuthProvider } from './contexts';
+// import { AuthProvider } from './contexts';
+import { BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { store } from './store'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <AuthProvider>
-    <ThemeProvider theme={theme}>
-      <App />
-    </ThemeProvider>
-  </AuthProvider>
+  <BrowserRouter>
+    <Provider store={store}>
+      <ThemeProvider theme={theme}>
+        <App />
+      </ThemeProvider>
+    </Provider>
+  </BrowserRouter>
+    
+
 );
 
 // If you want to start measuring performance in your app, pass a function

@@ -1,14 +1,10 @@
 import React from "react";
 import Button from '../UI/Button/Button'
 import './Forms.scss'
-import PropTypes from "prop-types"
+// import PropTypes from "prop-types"
+import {Link} from 'react-router-dom'
 
 function SignIn(events) {
-  const {changeSign} = events
-
-  SignIn.propTypes = {
-    changeSign: PropTypes.func.isRequired
-  }
 
   return (<>
     <div className="AuthForm__container">
@@ -31,7 +27,7 @@ function SignIn(events) {
       </label>
       <span className="forgot-pass">Забыли пароль?</span>
       <Button type="submit">Войти</Button>
-      <span className="changeForm" onClick={changeSign}>Новый пользователь? <span>Регистрация</span></span>
+      <span className="changeForm">Новый пользователь? <Link to='/signup'>Регистрация</Link></span>
     </div>
   </>)
 }

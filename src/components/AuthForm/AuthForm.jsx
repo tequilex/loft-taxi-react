@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
 import PropTypes from "prop-types"
+import {Route, Switch} from 'react-router-dom'
 
 function AuthForm(events) {
   const {formSend} = events
@@ -21,10 +22,10 @@ function AuthForm(events) {
 
   return (<>
   <form className="AuthForm" onSubmit={send}>
-    {
-    isSignIn
-    ? <SignIn changeSign={() => setSignIn(prev => !prev)} /> 
-    : <SignUp changeSign={() => setSignIn(prev => !prev)} />}
+    <Switch>
+      <Route path='/signup' component={SignUp} />
+      <Route path='*' component={SignIn} />
+    </Switch>
   </form>
   </>)
 }

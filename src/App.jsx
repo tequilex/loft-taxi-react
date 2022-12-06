@@ -3,11 +3,9 @@ import './App.scss';
 import Authorized from './pages/Authorized/Authorized';
 import Unauthorized from './pages/Unauthorized/Unauthorized';
 import PropTypes from 'prop-types'
-import {WithAuth} from './contexts'
-// import Login from './pages/Login/Login';
-// import Register from './pages/Register/Register';
-// import Main from './pages/Main/Main';
-// import Profile from './pages/Profile/Profile';
+import { connect } from "react-redux";
+// import {WithAuth} from './contexts'
+
 
 
 function App(props) {
@@ -16,14 +14,6 @@ function App(props) {
   App.propTypes = {
     isLoggedIn: PropTypes.bool.isRequired
   }
-
-  // {const pages = {
-  //   login: <Login onNavigate={navigateTo} />,
-  //   register: <Register onNavigate={navigateTo} />,
-  //   main: <Main onNavigate={navigateTo} />,
-  //   profile: <Profile onNavigate={navigateTo} />
-  // }}
-
   return (
     <div className="wrapper">
       {
@@ -35,4 +25,6 @@ function App(props) {
   )
 }
 
-export default WithAuth(App) 
+export default connect(
+  (state) => ({isLoggedIn: state.AuthReducer.isLoggedIn})
+)(App) 

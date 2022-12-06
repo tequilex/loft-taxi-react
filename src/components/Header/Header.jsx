@@ -1,4 +1,8 @@
 import logo from '../../assets/img/logo.svg'
+import Map from '../Map/Map'
+import Profile from '../Profile/Profile'
+import { PrivateRoute } from '../../PrivateRoute'
+import {Link, Switch, Route} from 'react-router-dom'
 import './Header.scss'
 import PropTypes from 'prop-types'
 
@@ -10,13 +14,13 @@ function Header(events) {
   }
 
   const navList = [
-    {name: 'map', value: 'Карта'},
-    {name: 'profile', value: 'Профиль'},
-    {name: 'out', value: 'Выйти'}
+    {name: 'map', value: 'Карта', to: '/map'},
+    {name: 'profile', value: 'Профиль', to: '/profile'},
+    {name: 'out', value: 'Выйти', to: '/'}
   ]
 
 
-  return (
+  return (<>
     <div className="header">
       <div className="logo">
         <img alt="logo" src={logo} />
@@ -24,16 +28,17 @@ function Header(events) {
       <div className="navigation">
         <ul className="nav-list">
           {navList.map((el, i) => (
-            <li
+            <Link to={el.to}
             key={i}
             className="nav-item"
             onClick={() => clickNavItem(el)}
-            >{el.value}</li>
+            >{el.value}</Link>
           ))}
         </ul>
       </div>
     </div>
-  )
+    </>
+    )
 }
 
 export default Header
