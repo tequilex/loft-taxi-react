@@ -1,6 +1,6 @@
 import React from "react";
-import sidebarLogo from './sidebarLogo.svg'
-import './Sidebar.css'
+import sidebarLogo from '../../assets/img/sidebarLogo.svg'
+import './Sidebar.scss'
 
 export default function Sidebar() {
   return (

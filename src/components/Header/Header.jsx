@@ -1,36 +1,41 @@
-import logo from './logo.svg'
-import './Header.css'
+import logo from '../../assets/img/logo.svg'
+import {Link} from 'react-router-dom'
+import './Header.scss'
+import PropTypes from 'prop-types'
 
-function Header({onNavigate}) {
+function Header(events) {
+  const {clickNavItem} = events
 
-  const navigateTo = (page) => () => onNavigate(page)
+  Header.propTypes = {
+    clickNavItem: PropTypes.func.isRequired
+  }
 
-  return (
+  const navList = [
+    {name: 'map', value: 'Карта', to: '/map'},
+    {name: 'profile', value: 'Профиль', to: '/profile'},
+    {name: 'out', value: 'Выйти', to: '/'}
+  ]
+
+
+  return (<>
     <div className="header">
       <div className="logo">
         <img alt="logo" src={logo} />
       </div>
       <div className="navigation">
         <ul className="nav-list">
-          <li className="nav-item">
-            <button className="nav-button" onClick={navigateTo('main')}>
-              <span className="nav-item-text">Карта</span>
-            </button>
-          </li>
-          <li className="nav-item">
-            <button className="nav-button" onClick={navigateTo('profile')}>
-              <span className="nav-item-text">Профиль</span>
-            </button>
-          </li>
-          <li className="nav-item">
-            <button className="nav-button" onClick={navigateTo('login')}>
-              <span className="nav-item-text">Выйти</span>
-            </button>
-          </li>
+          {navList.map((el, i) => (
+            <Link to={el.to}
+            key={i}
+            className="nav-item"
+            onClick={() => clickNavItem(el)}
+            >{el.value}</Link>
+          ))}
         </ul>
       </div>
     </div>
-  )
+    </>
+    )
 }
 
 export default Header
