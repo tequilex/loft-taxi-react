@@ -2,8 +2,10 @@ import React from "react";
 import './App.scss';
 import Authorized from './pages/Authorized/Authorized';
 import Unauthorized from './pages/Unauthorized/Unauthorized';
+import { PrivateRoute } from "./components/PrivateRoute/PrivateRoute";
 import PropTypes from 'prop-types'
 import { connect } from "react-redux";
+import { Route, Switch } from 'react-router-dom'
 // import {WithAuth} from './contexts'
 
 
@@ -16,11 +18,10 @@ function App(props) {
   }
   return (
     <div className="wrapper">
-      {
-        isLoggedIn 
-        ? <Authorized />
-        : <Unauthorized />
-      }
+      <Switch>
+        <PrivateRoute path='/map' component={Authorized} />
+        <Route path='/' component={Unauthorized} />
+      </Switch>
     </div>
   )
 }

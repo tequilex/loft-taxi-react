@@ -6,7 +6,7 @@ import Profile from "../../components/Profile/Profile";
 import { PrivateRoute } from '../../components/PrivateRoute/PrivateRoute'
 import { Switch, Route} from 'react-router-dom'
 import { connect } from "react-redux"
-import { logOut } from "../../store/action"
+import { logOut } from "../../store/actions/actionAuth"
 import PropTypes from 'prop-types'
 import './Authorized.scss'
 

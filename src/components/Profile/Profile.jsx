@@ -5,7 +5,7 @@ import cardLogo from '../../assets/img/cardLogo.svg'
 import cardSquare from '../../assets/img/cardSquare.svg'
 import Button from "../UI/Button/Button"
 import { connect } from "react-redux"
-import { saveCard } from '../../store/action'
+import { saveCard } from '../../store/actions/actionCard'
 
 import './Profile.scss'
 

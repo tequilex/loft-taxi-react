@@ -1,4 +1,4 @@
-import { AUTHENTICATE, logIn } from "../store/action"
+import { AUTHENTICATE, logIn } from "../store/actions/actionAuth"
 import { serverLogin } from "../api"
 
 export const authMiddleware = (store) => (next) => async (action) => {

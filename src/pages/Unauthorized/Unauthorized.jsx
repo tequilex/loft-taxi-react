@@ -2,7 +2,7 @@ import React from "react";
 import Sidebar from '../../components/Sidebar/Sidebar'
 import AuthForm from "../../components/AuthForm/AuthForm";
 // import { WithAuth } from "../../contexts";
-import { authenticate } from "../../store/action";
+import { authenticate } from "../../store/actions/actionAuth";
 import { connect } from "react-redux";
 import PropTypes from 'prop-types'
 import './Unauthorized.scss'
