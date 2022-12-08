@@ -18,10 +18,11 @@ function App(props) {
   }
   return (
     <div className="wrapper">
-      <Switch>
-        <PrivateRoute path='/map' component={Authorized} />
-        <Route path='/' component={Unauthorized} />
-      </Switch>
+      {
+        isLoggedIn 
+        ? <Route path='/' component={Authorized} />
+        : <Route path='/' component={Unauthorized} />
+      }
     </div>
   )
 }

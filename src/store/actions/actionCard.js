@@ -14,10 +14,9 @@ export const showCardData = (data) => ({
 export const saveCard = (cardNumber, cardName, expiryDate, cvc) => ({
   type: SAVE_CARD,
   payload: {
-    cardNumber,
     cardName,
+    cardNumber,
     expiryDate,
-    cvc,
-    token: "AUTH_TOKEN"
+    cvc
   }
 })
