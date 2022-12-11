@@ -21,7 +21,7 @@ function SignUp(events) {
         <div className="title">Как вас зовут?*</div>
         <input 
         type="text" 
-        name="username"
+        name="userName"
         placeholder="Петр Александрович"
         />
       </label>

@@ -58,7 +58,7 @@ function Profile({saveCard}) {
                   <label htmlFor="" className="input__title">MM/YY</label>
                   <Input
                     type="text"
-                    name="cardDate"
+                    name="expiryDate"
                     placeholder="00/00"
                     onChange={(e) => setExpiryDate(e.target.value)}
                   />

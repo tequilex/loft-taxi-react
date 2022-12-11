@@ -2,7 +2,7 @@ import React from "react";
 import Sidebar from '../../components/Sidebar/Sidebar'
 import AuthForm from "../../components/AuthForm/AuthForm";
 // import { WithAuth } from "../../contexts";
-import { authenticate } from "../../store/actions/actionAuth";
+import { authenticate} from "../../store/actions";
 import { connect } from "react-redux";
 import PropTypes from 'prop-types'
 import './Unauthorized.scss'
@@ -14,7 +14,8 @@ function Unauthorized(events) {
     authenticate: PropTypes.func.isRequired
   }
 
-  function send(e) {
+
+  function sendAuth(e) {
     authenticate(e.email, e.password).catch(e => {alert('Проверь логин и пароль')})
   }
 
@@ -22,7 +23,7 @@ function Unauthorized(events) {
     <div className="Unauthorized">
       <Sidebar />
       <div className="Unauthorized__block">
-        <AuthForm formSend={send} />
+        <AuthForm authSend={sendAuth} />
       </div>
     </div>
   </>)

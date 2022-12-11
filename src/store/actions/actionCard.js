@@ -17,6 +17,6 @@ export const saveCard = (cardNumber, cardName, expiryDate, cvc) => ({
     cardName,
     cardNumber,
     expiryDate,
-    cvc
+    cvc,
   }
 })

@@ -2,10 +2,9 @@ import React from "react";
 import './App.scss';
 import Authorized from './pages/Authorized/Authorized';
 import Unauthorized from './pages/Unauthorized/Unauthorized';
-import { PrivateRoute } from "./components/PrivateRoute/PrivateRoute";
 import PropTypes from 'prop-types'
 import { connect } from "react-redux";
-import { Route, Switch } from 'react-router-dom'
+import { Route } from 'react-router-dom'
 // import {WithAuth} from './contexts'
 
 
