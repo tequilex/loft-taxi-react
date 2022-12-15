@@ -1,0 +1,88 @@
+.form__wrapper {
+  position: absolute;
+  z-index: 100;
+}
+
+.form__container {
+  width: 486px;
+  height: 471px;
+  background: #fff;
+  box-shadow: 0px 10px 20px -5px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  margin: 59px 0px 0px 68px;
+}
+
+.select__form {
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.selectStart {
+  position: absolute;
+  &::before {
+    position: absolute;
+    content: url(../../../assets/img/EllipseForm.svg);
+    width: 14px;
+    height: 14px;
+    top: 23px;
+    left: 5px;
+  }
+}
+
+.selectEnd {
+  position: absolute;
+  &::before {
+    position: absolute;
+    content: url(../../../assets/img/arrow.svg);
+    width: 16.5px;
+    height: 16.5px;
+    top: 25px;
+    left: 5px;
+  }
+}
+
+.formControl {
+  width: 95%;
+  margin: 5px 4.67% 0 4.67%;
+}
+
+.select {
+  height: 40px;
+  text-indent: 30px ;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 21px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+    &::before {
+      border-bottom: none;
+  }
+  &::after {
+      border-bottom: 1px solid #E0E0E0;
+  }
+  &::focus {
+      border-bottom: 1px solid #E0E0E0;
+  }
+}
+
+.sub__form {
+  display: flex;
+  width: 100%;
+  background: #fff;
+  box-shadow: 0px 0px 20px -5px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  margin-top: 23px;
+  flex-direction: column;
+}
+
+.price__form {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.submit__btn {
+  align-self: center;
+  margin-bottom: 33px;
+}

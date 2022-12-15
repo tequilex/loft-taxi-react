@@ -1,8 +1,40 @@
 import React, {useEffect, useRef} from "react"
+import { connect } from "react-redux";
 import mapboxgl from "mapbox-gl";
 import './Map.scss'
 
-function Map() {
+export const drawRoute = (map, coordinates) => {
+  map.flyTo({
+    center: coordinates[0],
+    zoom: 15
+  });
+
+  map.addLayer({
+    id: "route",
+    type: "line",
+    source: {
+      type: "geojson",
+      data: {
+        type: "Feature",
+        properties: {},
+        geometry: {
+          type: "LineString",
+          coordinates
+        }
+      }
+    },
+    layout: {
+      "line-join": "round",
+      "line-cap": "round"
+    },
+    paint: {
+      "line-color": "#ffc617",
+      "line-width": 8
+    }
+  });
+};
+
+const Map = ({route}) => {
 
   const mapContainer = useRef(null)
 
@@ -15,11 +47,16 @@ function Map() {
       zoom: 10,
       controls: []
       })
+      map?.on('load', async () => {
+        if (route.length > 0) {
+          await drawRoute(map, route)
+        }
+      })
 
       return ()=>{
         map.remove()
       }
-  }, [])
+  }, [route])
 
   return (
     <>
@@ -30,4 +67,7 @@ function Map() {
   )
 }
 
-export default Map
+export default connect(
+  (state) => ({route: state.addressReducer.route}),
+  undefined
+)(Map)

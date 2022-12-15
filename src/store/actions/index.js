@@ -1,3 +1,5 @@
 export * from './actionAuth.js'
 export * from './actionCard.js'
 export * from './actionReg.js'
+export * from './actionAddres.js'
+export * from './actionRoute.js'

@@ -1,22 +1,27 @@
-import React, {useState} from "react"
+import React, {useState, useEffect} from "react"
 import Input from '@mui/material/Input'
 import cardEllipse from '../../assets/img/cardEllipse.svg'
 import cardLogo from '../../assets/img/cardLogo.svg'
 import cardSquare from '../../assets/img/cardSquare.svg'
 import Button from "../UI/Button/Button"
 import { connect } from "react-redux"
-import { saveCard } from '../../store/actions/actionCard'
+import { saveCard, getCard} from '../../store/actions'
 
 import './Profile.scss'
 
-function Profile({saveCard}) {
+function Profile({saveCard, getCard}) {
 
 
-  const [cardNumber, setCardNumber] = useState("000000000000000")
+  const [cardNumber, setCardNumber] = useState("0000 0000 0000 000")
   const [expiryDate, setExpiryDate] = useState("00/00")
   const [cardName, setCardName] = useState("")
   const [cvc, setCvc] = useState("")
 
+
+  useEffect(() => {
+    const getCardData = getCard()
+    console.log(getCardData);
+  },[getCard])
 
     const handleSubmit = (e) => {
     e.preventDefault()
@@ -24,11 +29,14 @@ function Profile({saveCard}) {
       const cardName = e.target.cardName ? e.target.cardName.value : null
       const expiryDate = e.target.expiryDate ? e.target.expiryDate.value : null
       const cvc = e.target.cvc ? e.target.cvc.value : null
-    
+      
+      localStorage.setItem('cardData', cardName)
+
       saveCard(cardNumber, cardName, expiryDate, cvc)
   }
 
   return (
+    <div className="Page__overlay">
     <div className="profile">
       <form className="profile__form" onSubmit={handleSubmit}>
         <div className="profile__title">Профиль</div>
@@ -49,7 +57,7 @@ function Profile({saveCard}) {
               <Input
                 type="card"
                 name="cardNumber"
-                placeholder="000000000000"
+                placeholder="0000 0000 0000 0000"
                 onChange={(e) => setCardNumber(e.target.value)}
               />
               </div>
@@ -89,6 +97,7 @@ function Profile({saveCard}) {
         <Button type="submit">Сохранить</Button>
       </form>
     </div>
+    </div>  
   )
 }
 
@@ -98,4 +107,4 @@ export default connect(state => ({
   cardName: state.CardData.cardName,
   cvc: state.CardData.cvc
 }),
-{saveCard})(Profile)
+{saveCard, getCard})(Profile)
