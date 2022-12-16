@@ -5,12 +5,13 @@ import cardLogo from '../../assets/img/cardLogo.svg'
 import cardSquare from '../../assets/img/cardSquare.svg'
 import Button from "../UI/Button/Button"
 import { connect } from "react-redux"
+import { useHistory } from "react-router-dom";
 import { saveCard, getCard} from '../../store/actions'
 
 import './Profile.scss'
 
 function Profile({saveCard, getCard}) {
-
+  let history = useHistory();
 
   const [cardNumber, setCardNumber] = useState("0000 0000 0000 000")
   const [expiryDate, setExpiryDate] = useState("00/00")
@@ -36,8 +37,8 @@ function Profile({saveCard, getCard}) {
   }
 
   return (
-    <div className="Page__overlay">
-    <div className="profile">
+    <div className="Page__overlay" onClick={() => {history.push('/')}}>
+    <div className="profile" onClick={e => e.stopPropagation()}>
       <form className="profile__form" onSubmit={handleSubmit}>
         <div className="profile__title">Профиль</div>
         <div className="profile__subtitle">Введите платежные данные</div>

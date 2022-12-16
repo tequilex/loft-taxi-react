@@ -1,6 +1,6 @@
 import { GET_ADDRESSES_STATE, SAVE_ROUTE, CLEAR_ROUTE } from "../actions"
 
-const initialState = {addresses: [], route: []}
+const initialState = {addresses: [], route: null}
 
 export default function addressReducer(state = initialState, action) {
   switch (action.type) {
@@ -11,7 +11,7 @@ export default function addressReducer(state = initialState, action) {
       return {...state, route: [...action.payload]}
     }
     case CLEAR_ROUTE: {
-      return {...state, route: [[]]}
+      return {...state, route: []}
     }
     default:
       return state

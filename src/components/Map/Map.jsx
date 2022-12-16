@@ -54,22 +54,18 @@ const Map = ({route}) => {
   }, [])
 
   useEffect(() => {
-      if (route.length) {
+      if (route?.length) {
         drawRoute(map.current, route)
-      } if (route.length === 1) {
-        map.current.removeLayer('route')
+      } else if (!route?.length && route) {
+        map.current.removeLayer('route') 
+        map.current.removeSource("route")
+        map.current.flyTo({center: [30.3056504, 59.9429126], zoom: 10})
       }
     }, [route])
 
-    function cl() {
-      if(!route.length) {
-        map.current.removeLayer('route') ///Создал и повесил на Map чтобы убедиться что рабтает по клику
-      }
-    }
-
   return (
     <>
-      <div className="Map" onClick={() => cl()}>
+      <div className="Map">
         <div className="Map-app" ref={mapContainer}></div>
       </div>
     </>
