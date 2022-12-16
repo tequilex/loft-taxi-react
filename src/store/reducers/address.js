@@ -11,7 +11,7 @@ export default function addressReducer(state = initialState, action) {
       return {...state, route: [...action.payload]}
     }
     case CLEAR_ROUTE: {
-      return {...state, route: []}
+      return {...state, route: [[]]}
     }
     default:
       return state

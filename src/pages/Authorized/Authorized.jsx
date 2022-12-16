@@ -36,10 +36,11 @@ function Authorized({route, logOut, clearRoute}) {
 
   return (<>
     <div className="Authorized">
+      <button onClick={() => console.log(route)} >sggs</button>
       <Header clickNavItem={clickNavItemFunc}/>
       <div className="authorized-content">
         <Map/>
-        {route.length ? <ModalOrderCreated clear={clear} /> : cardData ? <OrderForm /> : <ModalNoCard /> }
+        {route.length === 1 ? <ModalOrderCreated clear={clear} /> : cardData ? <OrderForm /> : <ModalNoCard /> }
           <Switch>
             <PrivateRoute path="/profile" component={Profile} />
             <Route path="/" />
