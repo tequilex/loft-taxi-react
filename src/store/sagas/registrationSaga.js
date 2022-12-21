@@ -6,7 +6,10 @@ export function* registrationSaga(action) {
   const { email, password, name, surname } = action.payload
   const success = yield call(serverRegistration, email, password, name, surname)
 
-  if (success) {
+  if (success.success) {
+    localStorage.setItem('token', success.token)
+    localStorage.setItem('pass', password)
+    localStorage.setItem('login', email)
     yield put(logIn())
   }
 }

@@ -5,6 +5,8 @@ import PropTypes from "prop-types"
 import { reg } from "../../store/actions";
 import { connect } from "react-redux";
 import {Route, Switch} from 'react-router-dom'
+import { Formik, Form } from "formik"
+import * as Yup from 'yup'
 
 function AuthForm(events) {
   const {authSend, reg} = events
@@ -43,12 +45,28 @@ function AuthForm(events) {
   }
 
   return (<>
-  <form className="AuthForm" onSubmit={handleSubmit}>
+  <Formik 
+  initialValues={{
+    email: '',
+    password: '',
+    userName: ''
+  }}
+  validationSchema = {Yup.object({
+    email: Yup.string()
+    .required('Введите email'),
+    password: Yup.string()
+    .required('Введите пароль'),
+    userName: Yup.string()
+    .required('Введите свое имя'),
+  })}
+  >
+  <Form className="AuthForm" onSubmit={handleSubmit}>
     <Switch>
       <Route path='/signup' component={SignUp} />
       <Route path='*' component={SignIn} />
     </Switch>
-  </form>
+  </Form>
+  </Formik>
   </>)
 }
 

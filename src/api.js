@@ -23,7 +23,7 @@ export const serverRegistration = async (email, password, name, surname) => {
     }
   )
   .then(res => res.json())
-  .then(answer => answer.success)
+  .then(answer => answer)
 }
 
 export const serverSaveCard = async (cardNumber, cardName, expiryDate, cvc, token) => {

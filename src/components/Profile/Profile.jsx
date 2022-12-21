@@ -7,17 +7,20 @@ import Button from "../UI/Button/Button"
 import { connect } from "react-redux"
 import { useHistory } from "react-router-dom";
 import { saveCard, getCard} from '../../store/actions'
-
+import { Formik, Form, Field, ErrorMessage } from "formik"
+import * as Yup from 'yup'
 import './Profile.scss'
 
 function Profile({saveCard, getCard}) {
   let history = useHistory();
 
-  const [cardNumber, setCardNumber] = useState("0000 0000 0000 000")
-  const [expiryDate, setExpiryDate] = useState("00/00")
-  const [cardName, setCardName] = useState("")
-  const [cvc, setCvc] = useState("")
+  const saveCardData = localStorage.getItem('cardData')
+  const data = JSON.parse(saveCardData)
 
+  const [cardNumber, setCardNumber] = useState(data?.cardNumber)
+  const [expiryDate, setExpiryDate] = useState(data?.expiryDate)
+  const [cardName, setCardName] = useState(data?.cardName)
+  const [cvc, setCvc] = useState(data?.cvc)
 
   useEffect(() => {
     const getCardData = getCard()
@@ -26,60 +29,90 @@ function Profile({saveCard, getCard}) {
 
     const handleSubmit = (e) => {
     e.preventDefault()
-      const cardNumber = e.target.cardNumber ? e.target.cardNumber.value : null
-      const cardName = e.target.cardName ? e.target.cardName.value : null
-      const expiryDate = e.target.expiryDate ? e.target.expiryDate.value : null
-      const cvc = e.target.cvc ? e.target.cvc.value : null
-      
-      localStorage.setItem('cardData', cardName)
+    const carData = {
+      cardNumber: e.target.cardNumber ? e.target.cardNumber.value : null,
+      cardName: e.target.cardName ? e.target.cardName.value : null,
+      expiryDate: e.target.expiryDate ? e.target.expiryDate.value : null,
+      cvc: e.target.cvc ? e.target.cvc.value : null
+    }
+      localStorage.setItem('cardData', JSON.stringify(carData))
 
       saveCard(cardNumber, cardName, expiryDate, cvc)
   }
 
+
+
   return (
+    <Formik
+    initialValues={{
+      cardName: data?.cardName,
+      cardNumber: data?.cardNumber,
+      expiryDate: data?.expiryDate,
+      cvc: data?.cvc
+    }}
+    validationSchema = {Yup.object({
+      cardName: Yup.string()
+      .required('Введите ваше имя'),
+      cardNumber: Yup.string()
+      .required('Введите номер карты')
+      .matches(/\d{13,18}/, 'не верный формат'),
+      expiryDate: Yup.string()
+      .min(4, 'Проверьте дату')
+      .required('Поле обязательно для заполнения'),
+      cvc: Yup.string()
+      .min(3, 'Проверьте ваш CVC код')
+      .matches(/\d{3,5}/, 'не верный формат')
+      .required('Поле обязательно')
+    })}
+    >
     <div className="Page__overlay" onClick={() => {history.push('/')}}>
     <div className="profile" onClick={e => e.stopPropagation()}>
-      <form className="profile__form" onSubmit={handleSubmit}>
+      <Form className="profile__form" onSubmit={handleSubmit}>
         <div className="profile__title">Профиль</div>
         <div className="profile__subtitle">Введите платежные данные</div>
         <div className="profile-form__wrapper">
           <div className="form__info">
             <div className="input">
               <label htmlFor="" className="input__title">Имя владельца</label>
-              <Input
-                type="carName"
+              <Field
+                as={Input}
+                type="cardName"
                 name="cardName"
                 placeholder="ANDREY IVANOV"
-                onChange={(e) => setCardName(e.target.value)}
               />
+              <ErrorMessage name="cardName"/>
             </div>
             <div className="input">
               <label htmlFor="" className="input__title">Номер карты</label>
-              <Input
+              <Field
+                as={Input}
                 type="card"
                 name="cardNumber"
                 placeholder="0000 0000 0000 0000"
-                onChange={(e) => setCardNumber(e.target.value)}
+                onChange={(e) => setCardName(e.target.value)}
               />
+              <ErrorMessage name="cardNumber"/>
               </div>
               <div className="card-row">
                 <div className="input">
                   <label htmlFor="" className="input__title">MM/YY</label>
-                  <Input
+                  <Field
+                    as={Input}
                     type="text"
                     name="expiryDate"
                     placeholder="00/00"
-                    onChange={(e) => setExpiryDate(e.target.value)}
                   />
+                  <ErrorMessage name="expiryDate"/>
                 </div>
                 <div className="input">
                   <label htmlFor="" className="input__title">CVC</label>
-                  <Input
+                  <Field
+                    as={Input}
                     type="text"
                     name="cvc"
                     placeholder="***"
-                    onChange={(e) => setCvc(e.target.value)}
                   />
+                  <ErrorMessage name="cvc"/>
                 </div>
               </div>
           </div>
@@ -96,9 +129,10 @@ function Profile({saveCard, getCard}) {
         </div>
         </div>
         <Button type="submit">Сохранить</Button>
-      </form>
+      </Form>
     </div>
     </div>  
+  </Formik>
   )
 }
 
