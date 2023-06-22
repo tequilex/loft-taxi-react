@@ -1,29 +1,36 @@
 import React, { useState } from "react";
 import Header from "../../components/Header/Header";
 import Map from "../../components/Map/Map";
+import OrderForm from "../../components/UI/OrderForm/OrderForm";
 import Profile from "../../components/Profile/Profile";
+import ModalOrderCreated from "../../components/UI/ModalOrderCreated/ModalOrderCreated";
+import ModalNoCard from "../../components/UI/ModalNoCard/ModalNoCard";
 // import {WithAuth} from '../../contexts'
 import { PrivateRoute } from '../../components/PrivateRoute/PrivateRoute'
 import { Switch, Route} from 'react-router-dom'
 import { connect } from "react-redux"
-import { logOut } from "../../store/action"
+import { logOut } from "../../store/actions/actionAuth"
+import { clearRoute } from "../../store/actions";
 import PropTypes from 'prop-types'
 import './Authorized.scss'
 
-function Authorized(events) {
-  const {logOut} = events
+function Authorized({route, logOut, clearRoute}) {
   const [content, setContent] = useState('map')
+  const cardData = localStorage.getItem('cardData')
 
   Authorized.propTypes = {
     logOut: PropTypes.func.isRequired
   }
 
-  // const pages = {
-  //   profile: <Profile />
-  // }
+  function clear() {
+    clearRoute()
+  }
 
   function clickNavItemFunc(e) {
-    if (e.name === 'out') logOut()
+    if (e.name === 'out') {
+      logOut()
+      localStorage.clear()
+    }
     setContent(e.name)
   }
 
@@ -32,6 +39,7 @@ function Authorized(events) {
       <Header clickNavItem={clickNavItemFunc}/>
       <div className="authorized-content">
         <Map/>
+        {route?.length ? <ModalOrderCreated clear={clear} /> : cardData ? <OrderForm /> : <ModalNoCard /> }
           <Switch>
             <PrivateRoute path="/profile" component={Profile} />
             <Route path="/" />
@@ -48,6 +56,8 @@ function Authorized(events) {
 }
 
 export default connect(
-  null,
-  {logOut}
+  (state) => ({route: state.addressReducer.route}),
+  {logOut,
+    clearRoute
+  }
 )(Authorized)
