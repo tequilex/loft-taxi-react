@@ -1,3 +1,5 @@
+@import '../../../vars.scss';
+
 .ModalNoCard {
   position: absolute;
   background: #fff;
@@ -5,7 +7,9 @@
   height: 268px;
   border-radius: 10px;
   box-shadow: 0px 10px 20px -5px rgba(0, 0, 0, 0.1);
-  margin: 59px 0px 0px 68px;
+  // margin: 59px 0px 0px 68px;
+  left: 80px;
+  top: 65px;
   padding: 39px 51px 39px 41px;
 
   &__title {
@@ -22,5 +26,22 @@
   font-size: 18px;
   line-height: 21px;
   color: #7B7B7B;
+
+  @include tablets {
+    text-align: center;
+  }
+  }
+
+  @include tablets {
+    width: 95%;
+    left:0;
+    height: 60%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    margin-left: 11px;
   }
 }
