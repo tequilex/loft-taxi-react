@@ -1,0 +1,16 @@
+///Breakpoints
+$tablets: 720px;
+$phones: 420px;
+
+///Mixins
+@mixin tablets {
+  @media screen and (max-width: $tablets) {
+    @content;
+  }
+}
+
+@mixin phones {
+  @media screen and (max-width: $phones) {
+    @content;
+  }
+}

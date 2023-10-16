@@ -5,8 +5,8 @@ import './Sidebar.scss'
 export default function Sidebar() {
   return (
     <div className="sidebar">
-      <div className="sidebar-logo">
-        <img src={sidebarLogo} alt="logo" />
+      <div className="sidebar-logo-wrapper">
+        <img src={sidebarLogo} alt="logo" className="sidebar-logo" />
       </div>
     </div>
   )

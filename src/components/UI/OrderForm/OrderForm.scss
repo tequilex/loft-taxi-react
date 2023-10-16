@@ -1,15 +1,29 @@
+@import '../../../vars.scss';
+
 .form__wrapper {
   position: absolute;
   z-index: 100;
+  top: 68px;
+  left: 50px;
+  width: 100%;
+  max-width: 468px;
+
+  @include tablets {
+    
+    width: 93%;
+    left: 14px;
+    bottom: 180px;
+    top: auto;
+  }
 }
 
 .form__container {
-  width: 486px;
-  height: 471px;
+  // width: 486px;
+  // height: 471px;
   background: #fff;
   box-shadow: 0px 10px 20px -5px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
-  margin: 59px 0px 0px 68px;
+
 }
 
 .select__form {
@@ -85,4 +99,8 @@
 .submit__btn {
   align-self: center;
   margin-bottom: 33px;
+
+  @include tablets {
+    margin-bottom: 15px;
+  }
 }
